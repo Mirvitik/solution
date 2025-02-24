@@ -27,6 +27,8 @@ def load_image(name, colorkey=None):
 
 
 FPS = 50
+c_x = 0
+c_y = 0
 
 
 def terminate():
@@ -43,6 +45,10 @@ class Grass(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+
+    def update(self):
+        self.rect.x += c_x
+        self.rect.y += c_y
 
 
 class Hero(pygame.sprite.Sprite):
@@ -65,6 +71,10 @@ class Box(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+
+    def update(self):
+        self.rect.x += c_x
+        self.rect.y += c_y
 
 
 def start_screen():
@@ -133,18 +143,20 @@ if __name__ == '__main__':
     while running:
         all_sprites.update()
         hero_sprite.update()
+        c_x = 0
+        c_y = 0
         clock.tick(10)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             if pygame.key.get_pressed()[pygame.K_UP]:
-                player.rect.y -= 50
+                c_y = 50
             if pygame.key.get_pressed()[pygame.K_DOWN]:
-                player.rect.y += 50
+                c_y = -50
             if pygame.key.get_pressed()[pygame.K_LEFT]:
-                player.rect.x -= 50
+                c_x = 50
             if pygame.key.get_pressed()[pygame.K_RIGHT]:
-                player.rect.x += 50
+                c_x = -50
         screen.fill(pygame.Color('black'))
         all_sprites.draw(screen)
         hero_sprite.draw(screen)
