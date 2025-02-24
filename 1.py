@@ -112,7 +112,7 @@ def load_level(filename):
 
 if __name__ == '__main__':
     all_sprites = pygame.sprite.Group()
-    pygame.display.set_caption('Перемещение героя')
+    pygame.display.set_caption('Введите имя файла')
     screen.fill(pygame.Color('black'))
     running = True
     try:
@@ -120,6 +120,7 @@ if __name__ == '__main__':
     except Exception as e:
         print('Такого файла нет в папке data')
         sys.exit()
+    pygame.display.set_caption('Перемещение героя')
     start_screen()
     for y in range(len(l)):
         for x in range(len(l[y])):
