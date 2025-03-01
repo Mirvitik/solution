@@ -7,6 +7,7 @@ pygame.init()
 WIDTH, HEIGHT = size = 500, 500
 screen = pygame.display.set_mode(size)
 hero_sprite = pygame.sprite.Group()
+l = None
 
 
 def load_image(name, colorkey=None):
@@ -49,6 +50,16 @@ class Grass(pygame.sprite.Sprite):
     def update(self):
         self.rect.x += c_x
         self.rect.y += c_y
+        if l is not None:
+            if self.rect.x < 0:
+                self.rect.x = len(l[0]) * 50 - 50
+            elif self.rect.x > len(l[0]) * 50:
+                self.rect.x = 50
+            if self.rect.y < 0:
+                self.rect.y = len(l) * 50 - 50
+            elif self.rect.y > len(l) * 50:
+                self.rect.y = 50
+
 
 
 class Hero(pygame.sprite.Sprite):
@@ -75,6 +86,15 @@ class Box(pygame.sprite.Sprite):
     def update(self):
         self.rect.x += c_x
         self.rect.y += c_y
+        if l is not None:
+            if self.rect.x < 0:
+                self.rect.x = len(l[0]) * 50 - 50
+            elif self.rect.x > len(l[0]) * 50:
+                self.rect.x = 50
+            if self.rect.y < 0:
+                self.rect.y = len(l) * 50 - 50
+            elif self.rect.y > len(l) * 50:
+                self.rect.y = 50
 
 
 def start_screen():
